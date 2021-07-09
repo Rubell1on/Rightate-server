@@ -14,8 +14,9 @@ app.listen(PORT, () => {
 
 app.put("/api/deviceInfo", async (req, res) => {
     const {deviceId, deviceInfo} = req.body;
-    await db.query("INSERT INTO deviceInfo SET deviceId=?, info=?", [deviceId, deviceInfo])
+    await db.query("INSERT INTO deviceinfo SET deviceId=?, info=?", [deviceId, deviceInfo])
         .catch(e => {
+	console.log(e);
             res.status(500).end();
             return;
         });
@@ -28,6 +29,7 @@ app.put("/api/perfomance", async (req, res) => {
     const date = moment().format("YYYY-MM-DD HH:mm");
     await db.query("INSERT INTO perfomance SET deviceId = ?, date = ?, version = ?, levelName = ?, fps = ?, meanFps = ?", [deviceId, date, version, levelName, parseInt(fps), parseInt(meanFps)])
         .catch(e => {
+	console.log(e);
             res.status(500).end();
             return;
         });
