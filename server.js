@@ -48,7 +48,6 @@ app.get("/", (req, res) => {
 	res.status(200).end();
 })
 
-
 app.get("/testError", async (req, res) => {
     await logError(db, JSON.stringify({message: "hello world"}));
     res.status(200).end();
