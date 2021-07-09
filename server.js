@@ -9,7 +9,7 @@ const moment = require("moment");
 async function logError(db, message) {
     await db.query("INSERT INTO errors SET message=?", [message])
         .catch(async e => {
-            await logError(db, JSON.stringify(e));
+            res.status(500).send("ЖОПАА");
         })
 }
 
