@@ -25,7 +25,7 @@ app.put("/api/deviceInfo", async (req, res) => {
 
 app.put("/api/perfomance", async (req, res) => {
     const {deviceId, version,  levelName, fps, meanFps} = req.body;
-    const date = moment().format("YYYY-MM-DD HH:mm:ss");
+    const date = moment().format("YYYY-MM-DD HH:mm");
     await db.query("INSERT INTO perfomance SET deviceId = ?, date = ?, version = ?, levelName = ?, fps = ?, meanFps = ?", [deviceId, date, version, levelName, parseInt(fps), parseInt(meanFps)])
         .catch(e => {
             res.status(500).end();
@@ -33,4 +33,8 @@ app.put("/api/perfomance", async (req, res) => {
         });
 
     res.status(201).end();
+})
+
+app.get("/", (req, res) => {
+	res.status(200).end();
 })
